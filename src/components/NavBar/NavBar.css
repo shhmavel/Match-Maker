@@ -1,0 +1,20 @@
+.app-nav{
+    margin:0;
+    background-color:#197fe6;
+    height:65px;
+}
+*{
+    font-family:sans-serif;
+}
+.nav-list{
+    padding-top:15px;
+    padding-bottom:5px;
+    text-align:right;
+    margin-top:0;
+}
+.nav-item{
+    display:inline;
+}
+div{
+    margin:0;
+}
