@@ -5,12 +5,12 @@ export default class LandingPage extends Component{
     state = { 
         navLinks: [
             {
-                link:"Register", 
-                route:"register"
+                link:"Home", 
+                route:"/"
             },
             {
-                link:"Login",
-                route:"login"
+                link:"Game",
+                route:"/game"
             }
         ]
     }
@@ -18,6 +18,15 @@ export default class LandingPage extends Component{
         history: {
           push: () => {},
         },
+      }
+
+      goToGame = () => {
+        const {history} = this.props
+        history.push('/game')
+      }
+      goToUpload = () => {
+          const {history} = this.props
+          history.push('/upload')
       }
       render(){
         return(
@@ -39,8 +48,8 @@ export default class LandingPage extends Component{
                         <h3>Start Playing Now</h3>
                     </header> 
                     <form>
-                        <button type="submit" formaction="game.html">Use Default</button>
-                        <button type="submit" formaction="upload.html">Create Your Own</button>
+                        <button type="submit" onClick={this.goToGame}>Use Default</button>
+                        <button type="submit" onClick={this.goToUpload}>Create Your Own</button>
                     </form>
                 </section>
             </div>
