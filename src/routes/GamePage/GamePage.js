@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import GameBoard from '../../components/GameBoard/GameBoard'
+import GameContext from '../../contexts/game-context'
 
 export default class GamePage extends Component{
     state = { 
@@ -21,6 +22,8 @@ export default class GamePage extends Component{
         },
       }
 
+    static contextType = GameContext;
+
     goToScores = () => {
     const {history} = this.props
     history.push('/scores')
@@ -30,7 +33,7 @@ export default class GamePage extends Component{
         return(
             <div>
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
-                <h2>Score: 3</h2>
+                <h2>Score: { this.context.score }</h2>
                 <button>Restart</button>
                 <button  type="submit" onClick={this.goToScores}>High Scores</button>
                 <GameBoard></GameBoard>
