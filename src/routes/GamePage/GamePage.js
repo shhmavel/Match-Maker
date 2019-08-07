@@ -34,7 +34,7 @@ export default class GamePage extends Component{
             <div>
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
                 <h2>Score: { this.context.score }</h2>
-                <button>Restart</button>
+                <button onClick={ this.context.setRestart }>Restart</button>
                 <button  type="submit" onClick={this.goToScores}>High Scores</button>
                 <GameBoard></GameBoard>
             </div>

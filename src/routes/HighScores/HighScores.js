@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
+import ScoreItem from '../../components/ScoreItem/ScoreItem'
+import GameContext from '../../contexts/game-context'
+import './HighScores.css'
 
-export default class GamePage extends Component{
+export default class ScoresPage extends Component{
+    static defaultProps = {
+        history: {
+          push: () => {},
+        },
+      }
+
     state = { 
         navLinks: [
             {
@@ -12,24 +21,66 @@ export default class GamePage extends Component{
                 link:"Game",
                 route:"/game"
             }
+        ],
+        scores: [
+            {
+                name: 'CML',
+                num: 12,
+            },
+            {
+                name: 'AFL',
+                num: 13,
+            },
+            {
+                name: 'LBD',
+                num: 14,
+            },
         ]
     }
-    static defaultProps = {
-        history: {
-          push: () => {},
-        },
-      }
+
+static contextType = GameContext;
+
+    handleClick = ev => {
+        console.log("clicky clacky")
+        ev.preventDefault()
+        const { initials } = ev.target
+        let scores = this.state.scores
+        let newScore = {
+            name:initials.value,
+            num: this.context.score
+        }
+        scores.push(newScore)
+        this.setState({ scores })
+
+    }
       
     render(){
+        console.log('score ', this.state.scores)
         return(
-            <div>
+            <div className="score">
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
-                <h2>High Scores:</h2>
-                <h3>1. CML - 12</h3>
-                <h3>2. CML - 13</h3>
-                <h3>3. CML - 14</h3>
-                <h3>4. CML - 15</h3>
-                <h3>5. CML - 16</h3>
+                <h2>Scores:</h2>
+                <form onSubmit={this.handleClick}>
+                    <label htmlFor="initials">Enter your initials: </label>
+                    <input name="initials"></input>
+                    <h3>Your Score: </h3>
+                    <h3>{this.context.score}</h3>
+                    <button type="submit">Add your score</button>
+                </form>
+                <div>
+                    {Object.keys(this.state.scores)
+                        .map(key => {
+                            return (
+                                <ScoreItem
+                                     key={key}
+                                     id={key}
+                                     name={this.state.scores[key].name}
+                                     num={this.state.scores[key].num}
+                                    > 
+                                </ScoreItem>
+                            )
+                        })}
+                </div>
             </div>
         )
     }

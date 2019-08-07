@@ -10,16 +10,24 @@ import GameContext from '../../contexts/game-context';
 class App extends Component {
   state = {
     score: 0,
+    restart: false
   }
 
   updateScore = (score) => {
     this.setState({ score })
   }
 
+  updateRestart = (restart) => {
+    this.setState({ restart })
+    this.updateScore(0)
+  }
+
   render(){
     const contextValue = {
       score: this.state.score,
       setScore: this.updateScore,
+      restart: this.state.restart,
+      setRestart: this.updateRestart
     }
 
     return (

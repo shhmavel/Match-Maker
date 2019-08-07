@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import Card from '../Card/Card'
+import { withRouter } from 'react-router-dom'
 import './GameBoard.css'
 import GameContext from '../../contexts/game-context'
 
-export default class GamePage extends Component{
+class GameBoard extends Component{
     static defaultProps = {
+        history: {
+            push: () => {},
+          },
         background: "./cardBack.jpg" 
     }
 
@@ -107,6 +111,20 @@ export default class GamePage extends Component{
             }
             this.forceUpdate()
         }
+        if(this.gameComplete()){
+            const {history} = this.props
+            history.push('/scores')
+        }
+        
+    }
+
+    gameComplete = () => {
+        for(let i = 0; i < this.state.cards.length; i++){
+            if(!this.state.cards[i].matched){
+                return false; 
+            }
+        }
+        return true;
     }
 
     resetBoard = () => {
@@ -117,7 +135,19 @@ export default class GamePage extends Component{
         this.forceUpdate()
     }
 
+    clearBoard = () => {
+        for(let i = 0; i < this.state.cards.length; i++){
+            this.state.cards[i].flipped = false
+        }
+        this.state.currSet = []
+        this.state.numFlip = 0
+        this.context.setRestart(false)
+    }
+
     render(){
+        if(this.context.restart){
+            this.clearBoard()
+        }
         return(
             <section className = "game-board">
                 <div className = "game-row">
@@ -181,3 +211,4 @@ export default class GamePage extends Component{
         )
     }
 }
+export default withRouter(GameBoard)
