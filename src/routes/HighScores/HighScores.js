@@ -16,10 +16,6 @@ export default class ScoresPage extends Component{
             {
                 link:"Home", 
                 route:"/"
-            },
-            {
-                link:"Game",
-                route:"/game"
             }
         ],
         scores: [
@@ -62,7 +58,7 @@ static contextType = GameContext;
                 <h2>Scores:</h2>
                 <form onSubmit={this.handleClick}>
                     <label htmlFor="initials">Enter your initials: </label>
-                    <input name="initials"></input>
+                    <input name="initials" required></input>
                     <h3>Your Score: </h3>
                     <h3>{this.context.score}</h3>
                     <button type="submit">Add your score</button>

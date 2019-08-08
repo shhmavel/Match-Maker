@@ -87,29 +87,38 @@ class GameBoard extends Component{
         this.context.setScore(this.context.score + 1)
     }
 
-    handleClick = (e) => {
+    waitAndShit = () => {
+        console.log("thisi s me waiting")
+    }
+
+    handleClick = async(e) => {
         // this.setState({
         //     cards: update(this.state.cards, {
         //         0: { flipped: {$set: true }}})
         // })numFlip: 0,currSet: [],
-        if(!this.state.cards[e.target.id].flipped){
-            this.state.cards[e.target.id].flipped = !this.state.cards[e.target.id].flipped
+        let cards = this.state.cards
+        let numFlip = this.state.numFlip
+        let currSet = this.state.currSet
+        console.log("st ", cards, numFlip, currSet)
+        if(!cards[e.target.id].flipped){
+            cards[e.target.id].flipped = !cards[e.target.id].flipped
             this.updateScore()
-            if(this.state.cards[e.target.id].flipped){
-                this.state.numFlip = this.state.numFlip + 1 
-                this.state.currSet[this.state.currSet.length] = e.target.id
+            if(cards[e.target.id].flipped){
+                numFlip = numFlip + 1 
+                currSet[currSet.length] = e.target.id
             }
-            if(this.state.numFlip === 2){
-                if(this.state.cards[this.state.currSet[0]].image === this.state.cards[this.state.currSet[1]].image){
-                    this.state.cards[this.state.currSet[0]].matched = true 
-                    this.state.cards[this.state.currSet[1]].matched = true 
-                    this.state.currSet = []
-                    this.state.numFlip = 0
+            await this.setState({ cards, currSet, numFlip })
+            if(numFlip === 2){
+                if(cards[currSet[0]].image === cards[currSet[1]].image){
+                    cards[currSet[0]].matched = true 
+                    cards[currSet[1]].matched = true 
+                    currSet = []
+                    numFlip = 0
+                    await this.setState({ cards, currSet, numFlip })
                 } else {
                     setTimeout(this.resetBoard, 1000)
                 }
             }
-            this.forceUpdate()
         }
         if(this.gameComplete()){
             const {history} = this.props
@@ -128,20 +137,26 @@ class GameBoard extends Component{
     }
 
     resetBoard = () => {
-        this.state.cards[this.state.currSet[0]].flipped = false
-        this.state.cards[this.state.currSet[1]].flipped = false
-        this.state.currSet = []
-        this.state.numFlip = 0
-        this.forceUpdate()
+        let cards = this.state.cards
+        let numFlip = this.state.numFlip
+        let currSet = this.state.currSet
+        cards[currSet[0]].flipped = false
+        cards[currSet[1]].flipped = false
+        currSet = []
+        numFlip = 0
+        
+        this.setState({ cards, currSet, numFlip })
     }
 
     clearBoard = () => {
+        let cards = this.state.cards
+        let currSet = []
+        let numFlip = 0
         for(let i = 0; i < this.state.cards.length; i++){
-            this.state.cards[i].flipped = false
+            cards[i].flipped = false
         }
-        this.state.currSet = []
-        this.state.numFlip = 0
         this.context.setRestart(false)
+        this.setState({ cards, numFlip, currSet })
     }
 
     render(){
