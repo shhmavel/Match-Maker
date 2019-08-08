@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import GameBoard from '../../components/GameBoard/GameBoard'
 import GameContext from '../../contexts/game-context'
+import './GamePage.css'
 
 export default class GamePage extends Component{
     state = { 
@@ -9,10 +10,6 @@ export default class GamePage extends Component{
             {
                 link:"Home", 
                 route:"/"
-            },
-            {
-                link:"Game",
-                route:"/game"
             }
         ]
     }
@@ -31,11 +28,11 @@ export default class GamePage extends Component{
 
     render(){
         return(
-            <div>
+            <div className="board">
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
                 <h2>Score: { this.context.score }</h2>
                 <button onClick={ this.context.setRestart }>Restart</button>
-                <button  type="submit" onClick={this.goToScores}>High Scores</button>
+                <button type="submit" onClick={ this.goToScores }>High Scores</button>
                 <GameBoard></GameBoard>
             </div>
         )

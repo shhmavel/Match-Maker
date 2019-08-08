@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
+import './LandingPage.css'
 
 export default class LandingPage extends Component{
     state = { 
