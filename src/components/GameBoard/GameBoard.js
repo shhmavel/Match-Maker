@@ -87,10 +87,6 @@ class GameBoard extends Component{
         this.context.setScore(this.context.score + 1)
     }
 
-    waitAndShit = () => {
-        console.log("thisi s me waiting")
-    }
-
     handleClick = async(e) => {
         let cards = this.state.cards
         let numFlip = this.state.numFlip
