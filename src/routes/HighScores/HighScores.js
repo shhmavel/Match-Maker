@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import ScoreItem from '../../components/ScoreItem/ScoreItem'
 import GameContext from '../../contexts/game-context'
+import ScoresApiService from '../../services/scores-api-service'
 import './HighScores.css'
 
 export default class ScoresPage extends Component{
@@ -20,38 +21,44 @@ export default class ScoresPage extends Component{
         ],
         scores: [
             {
-                name: 'CML',
-                num: 12,
-            },
-            {
-                name: 'AFL',
-                num: 13,
-            },
-            {
-                name: 'LBD',
-                num: 14,
-            },
-        ]
+                initials: '',
+                score: 0,
+            }
+        ],
+        error: null
     }
 
+    componentDidMount(){
+        ScoresApiService.getScores()
+            .then(res => {
+                let scores = res;
+                this.setState({ scores })
+            })
+            .catch(this.state.error)
+    }
 static contextType = GameContext;
 
     handleClick = ev => {
-        console.log("clicky clacky")
         ev.preventDefault()
         const { initials } = ev.target
-        let scores = this.state.scores
         let newScore = {
-            name:initials.value,
-            num: this.context.score
+            initials:initials.value,
+            score: this.context.score
         }
-        scores.push(newScore)
-        this.setState({ scores })
+        ScoresApiService.postScore( newScore.initials, newScore.score )
 
+    }
+    
+    componentDidUpdate(){
+        ScoresApiService.getScores()
+        .then(res => {
+            let scores = res;
+            this.setState({ scores })
+        })
+        .catch(this.state.error)
     }
       
     render(){
-        console.log('score ', this.state.scores)
         return(
             <div className="score">
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
@@ -70,8 +77,8 @@ static contextType = GameContext;
                                 <ScoreItem
                                      key={key}
                                      id={key}
-                                     name={this.state.scores[key].name}
-                                     num={this.state.scores[key].num}
+                                     name={this.state.scores[key].initials}
+                                     num={this.state.scores[key].score}
                                     > 
                                 </ScoreItem>
                             )

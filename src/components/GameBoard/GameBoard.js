@@ -92,14 +92,9 @@ class GameBoard extends Component{
     }
 
     handleClick = async(e) => {
-        // this.setState({
-        //     cards: update(this.state.cards, {
-        //         0: { flipped: {$set: true }}})
-        // })numFlip: 0,currSet: [],
         let cards = this.state.cards
         let numFlip = this.state.numFlip
         let currSet = this.state.currSet
-        console.log("st ", cards, numFlip, currSet)
         if(!cards[e.target.id].flipped){
             cards[e.target.id].flipped = !cards[e.target.id].flipped
             this.updateScore()

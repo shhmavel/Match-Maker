@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Card.css'
 
-export default class GamePage extends Component{
+export default class Card extends Component{
     render(){
         return(
             <div className = "card"

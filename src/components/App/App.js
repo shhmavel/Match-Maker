@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom'
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import LandingPage from '../../routes/LandingPage/LandingPage'
 import GamePage from '../../routes/GamePage/GamePage'
-import UploadPage from '../../routes/UploadPage/UploadPage'
 import HighScores from '../../routes/HighScores/HighScores'
 import GameContext from '../../contexts/game-context';
 
@@ -37,10 +36,6 @@ class App extends Component {
             <Route
               exact path={'/'}
               component={LandingPage}
-            />
-            <Route
-              path={'/upload'}
-              component={UploadPage}
             />
             <Route
               path={'/game'}
