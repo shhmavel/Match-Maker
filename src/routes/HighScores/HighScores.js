@@ -6,6 +6,7 @@ import ScoresApiService from '../../services/scores-api-service'
 import './HighScores.css'
 
 export default class ScoresPage extends Component{
+    _isMounted = false
     static defaultProps = {
         history: {
           push: () => {},
@@ -29,6 +30,7 @@ export default class ScoresPage extends Component{
     }
 
     componentDidMount(){
+        this._isMounted = true
         ScoresApiService.getScores()
             .then(res => {
                 let scores = res;
@@ -36,6 +38,11 @@ export default class ScoresPage extends Component{
             })
             .catch(this.state.error)
     }
+
+    componentWillUnmount(){
+        this._isMounted = false
+    }
+
 static contextType = GameContext;
 
     handleClick = ev => {
@@ -50,12 +57,14 @@ static contextType = GameContext;
     }
     
     componentDidUpdate(){
-        ScoresApiService.getScores()
-        .then(res => {
-            let scores = res;
-            this.setState({ scores })
-        })
-        .catch(this.state.error)
+        if(this._isMounted){
+            ScoresApiService.getScores()
+            .then(res => {
+                let scores = res;
+                this.setState({ scores })
+            })
+            .catch(this.state.error)
+        }
     }
       
     render(){
