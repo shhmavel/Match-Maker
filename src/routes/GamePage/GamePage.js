@@ -33,7 +33,7 @@ export default class GamePage extends Component{
                 <h2>Score: { this.context.score }</h2>
                 <p>Your goal is to keep your score as low as possible.</p>
                 <button onClick={ this.context.setRestart }>Restart</button>
-                <button type="submit" onClick={ this.goToScores }>High Scores</button>
+                {/* <button type="submit" onClick={ this.goToScores }>High Scores</button> */}
                 <GameBoard></GameBoard>
             </div>
         )
