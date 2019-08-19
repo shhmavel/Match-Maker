@@ -1,6 +1,7 @@
 h2, header, p{
     text-align:center;
     font-family: 'Lexend Zetta', sans-serif;
+    margin: 10px;
 }
 .pageHeader{
     font-size: 50px;
@@ -23,4 +24,5 @@ button{
 h3{
     color: limegreen;
     font-family: 'Lexend Zetta', sans-serif;
+    margin: 10px;
 }
