@@ -66,12 +66,10 @@ static contextType = GameContext;
             .catch(this.state.error)
         }
     }
-      
-    render(){
-        return(
-            <div className="score">
-                <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
-                <h2>Scores:</h2>
+
+    renderForm = () => {
+        if(this.context.score !== 0){
+            return(
                 <form onSubmit={this.handleClick}>
                     <label htmlFor="initials">Enter your initials: </label>
                     <input name="initials" required></input>
@@ -79,6 +77,16 @@ static contextType = GameContext;
                     <h3>{this.context.score}</h3>
                     <button type="submit">Add your score</button>
                 </form>
+            )
+        }
+    }
+      
+    render(){
+        return(
+            <div className="score">
+                <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
+                <h2>Scores:</h2>
+                <div>{this.renderForm()}</div>
                 <div>
                     {Object.keys(this.state.scores)
                         .map(key => {
