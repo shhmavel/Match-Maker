@@ -66,27 +66,21 @@ static contextType = GameContext;
             .catch(this.state.error)
         }
     }
-
-    renderForm = () => {
-        if(this.context.score !== 0){
-            return(
-                <form onSubmit={this.handleClick}>
-                    <label htmlFor="initials">Enter your initials: </label>
-                    <input name="initials" required></input>
-                    <h3>Your Score: </h3>
-                    <h3>{this.context.score}</h3>
-                    <button type="submit">Add your score</button>
-                </form>
-            )
-        }
-    }
       
     render(){
         return(
             <div className="score">
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
                 <h2>Scores:</h2>
-                <div>{this.renderForm()}</div>
+                <div className={this.context.score !== 0 ? 'display' : 'hide'}>
+                    <form onSubmit={this.handleClick}>
+                        <label htmlFor="initials">Enter your initials: </label>
+                        <input name="initials" required></input>
+                        <h3>Your Score: </h3>
+                        <h3>{this.context.score}</h3>
+                        <button type="submit">Add your score</button>
+                    </form>
+                </div>
                 <div>
                     {Object.keys(this.state.scores)
                         .map(key => {

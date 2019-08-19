@@ -32,7 +32,7 @@ export default class GamePage extends Component{
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
                 <h2>Score: { this.context.score }</h2>
                 <p>Your goal is to keep your score as low as possible.</p>
-                <button id="restart" onClick={ this.context.setRestart }>Restart</button>
+                <button id="restart" onClick={ () => this.context.setRestart }>Restart</button>
                 {/* <button type="submit" onClick={ this.goToScores }>High Scores</button> */}
                 <GameBoard></GameBoard>
             </div>
