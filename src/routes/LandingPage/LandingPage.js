@@ -27,13 +27,13 @@ export default class LandingPage extends Component{
       }
       render(){
         return(
-            <div>
+            <div id="landing">
                 <NavBar className="navbar" navLinks={this.state.navLinks}></NavBar>
                 <h2 className="pageHeader">Match Maker</h2>
                 <header>
                     <h3>Test your memory!</h3>
                 </header>
-                <p>Make matches by flipping two cards at a time. If they match, they stay flipped. If not, they flip back over and you try again.</p>
+                <p>Make matches by flipping two cards at a time.<br/>If they match, they stay flipped.<br/>If not, they flip back over and you try again.</p>
                 <section>
                     <header>
                         <h3>Start Playing Now</h3>

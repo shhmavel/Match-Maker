@@ -1,3 +1,26 @@
 h2, header, p{
     text-align:center;
+    font-family: 'Lexend Zetta', sans-serif;
+}
+.pageHeader{
+    font-size: 50px;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+button{
+    font-size: 20px;
+    border-radius: 6px;
+    background:purple;
+    color: white;
+    border: 1px solid purple;
+    padding: 5px;
+    font-family: 'Lexend Zetta', sans-serif;
+}
+h3{
+    color: limegreen;
+    font-family: 'Lexend Zetta', sans-serif;
 }

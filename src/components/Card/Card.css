@@ -13,4 +13,18 @@
   .front{
     width:150px;
     height:150px; 
+  } 
+  img {
+    border-radius: 8px;
+  }
+
+  @media only screen and (max-width: 600px) {
+      .front{
+    width:90px;
+    height:90px; 
+  }
+  .card{
+    width:90px;
+    height:90px; 
+  }
   }

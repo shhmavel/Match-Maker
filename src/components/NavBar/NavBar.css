@@ -1,11 +1,9 @@
 .app-nav{
     margin:0;
-    background-color:#197fe6;
+    background-color:purple;
     height:65px;
 }
-*{
-    font-family:sans-serif;
-}
+
 .nav-list{
     padding-top:15px;
     padding-bottom:5px;

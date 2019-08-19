@@ -4,7 +4,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import LandingPage from '../../routes/LandingPage/LandingPage'
 import GamePage from '../../routes/GamePage/GamePage'
 import HighScores from '../../routes/HighScores/HighScores'
-import GameContext from '../../contexts/game-context';
+import GameContext from '../../contexts/game-context'
 
 class App extends Component {
   state = {

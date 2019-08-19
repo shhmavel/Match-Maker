@@ -1,3 +1,10 @@
 .board{
     text-align:center;
+    background-color: black;
+    color: white;
+    font-family: 'Lexend Zetta', sans-serif;
+}
+
+#restart{
+    margin-bottom: 20px;
 }
