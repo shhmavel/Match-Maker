@@ -107,7 +107,7 @@ class GameBoard extends Component{
                     numFlip = 0
                     await this.setState({ cards, currSet, numFlip })
                 } else {
-                    setTimeout(this.resetBoard, 1000)
+                    setTimeout(this.resetBoard, 500)
                 }
             }
         }
