@@ -3,7 +3,6 @@ import './Card.css'
 
 export default class Card extends Component{
     render(){
-        console.log('render', this.props.id)
         return(
             <div className = "card"
                 onClick = { this.props.onClick }>
