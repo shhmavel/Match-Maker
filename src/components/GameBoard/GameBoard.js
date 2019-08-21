@@ -20,17 +20,17 @@ class GameBoard extends Component{
         cards: [
             {
                 flipped: false,
-                image: "./LoGrins.JPG",
+                image: "./LoGrins.jpeg",
                 matched: false
             },
             {
                 flipped: false,
-                image: "./WTH.JPG",
+                image: "./WTH.jpeg",
                 matched: false
             },
             {
                 flipped: false,
-                image: "./Antelope.JPG",
+                image: "./Antelope.jpeg",
                 matched: false
             },
             {
@@ -55,12 +55,12 @@ class GameBoard extends Component{
             },
             {
                 flipped: false,
-                image: "./WTH.JPG",
+                image: "./WTH.jpeg",
                 matched: false
             },
             {
                 flipped: false,
-                image: "./LoGrins.JPG",
+                image: "./LoGrins.jpeg",
                 matched: false
             },
             {
@@ -70,7 +70,7 @@ class GameBoard extends Component{
             },
             {
                 flipped: false,
-                image: "./Antelope.JPG",
+                image: "./Antelope.jpeg",
                 matched: false
             },
             {
